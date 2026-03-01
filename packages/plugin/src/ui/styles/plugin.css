@@ -1,0 +1,237 @@
+/* Brand Sync Plugin — Custom styles (augments Adobe Spectrum Web Components) */
+
+#brand-sync-root {
+  padding: 12px;
+  font-family: "Adobe Clean", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  color: var(--spectrum-global-color-gray-800, #333);
+}
+
+/* Section containers */
+.bs-section {
+  margin-bottom: 16px;
+}
+
+.bs-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--spectrum-global-color-gray-900, #222);
+}
+
+/* Sign-in form */
+.bs-sign-in {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+.bs-sign-in h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.bs-sign-in p {
+  margin: 0 0 8px 0;
+  color: var(--spectrum-global-color-gray-600, #666);
+  font-size: 12px;
+}
+
+/* Brand selector */
+.bs-brand-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bs-brand-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid var(--spectrum-global-color-gray-300, #ddd);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.bs-brand-item:hover {
+  background: var(--spectrum-global-color-gray-100, #f5f5f5);
+}
+
+/* Dashboard header */
+.bs-dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.bs-dash-header h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.bs-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--spectrum-global-color-gray-600, #888);
+  margin-bottom: 12px;
+}
+
+/* Swatch grid */
+.bs-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 8px;
+}
+
+.bs-swatch-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.bs-swatch-color {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  border: 1px solid var(--spectrum-global-color-gray-300, #ccc);
+}
+
+.bs-swatch-label {
+  font-size: 10px;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Logo list */
+.bs-logo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bs-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border: 1px solid var(--spectrum-global-color-gray-300, #ddd);
+  border-radius: 4px;
+}
+
+.bs-logo-info {
+  font-size: 12px;
+}
+
+.bs-logo-type {
+  font-size: 10px;
+  color: var(--spectrum-global-color-gray-600, #888);
+}
+
+/* Validation results */
+.bs-validation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bs-validation-item {
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.bs-validation-item.error {
+  background: var(--spectrum-semantic-negative-color-background, #fde8e8);
+  border-left: 3px solid var(--spectrum-semantic-negative-color-icon, #e03e3e);
+}
+
+.bs-validation-item.warning {
+  background: var(--spectrum-semantic-notice-color-background, #fef3cd);
+  border-left: 3px solid var(--spectrum-semantic-notice-color-icon, #f0ad4e);
+}
+
+.bs-validation-item.info {
+  background: var(--spectrum-semantic-informative-color-background, #d9ecff);
+  border-left: 3px solid var(--spectrum-semantic-informative-color-icon, #2680eb);
+}
+
+.bs-validation-item .pass {
+  background: var(--spectrum-semantic-positive-color-background, #d4edda);
+  border-left: 3px solid var(--spectrum-semantic-positive-color-icon, #2d9d78);
+}
+
+/* Tabs */
+.bs-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--spectrum-global-color-gray-300, #ddd);
+  margin-bottom: 12px;
+}
+
+.bs-tab {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-bottom: 2px solid transparent;
+  color: var(--spectrum-global-color-gray-600, #666);
+}
+
+.bs-tab.active {
+  border-bottom-color: var(--spectrum-global-color-blue-500, #1473e6);
+  color: var(--spectrum-global-color-blue-500, #1473e6);
+}
+
+/* Audit banner */
+.bs-audit-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  background: var(--spectrum-global-color-gray-100, #f5f5f5);
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--spectrum-global-color-gray-600, #888);
+  margin-top: 12px;
+}
+
+.bs-offline-badge {
+  background: var(--spectrum-semantic-notice-color-icon, #f0ad4e);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Error message */
+.bs-error {
+  color: var(--spectrum-semantic-negative-color-icon, #e03e3e);
+  font-size: 12px;
+  padding: 8px;
+  background: var(--spectrum-semantic-negative-color-background, #fde8e8);
+  border-radius: 4px;
+}
+
+/* Loading */
+.bs-loading {
+  text-align: center;
+  padding: 24px;
+  color: var(--spectrum-global-color-gray-600, #888);
+}
+
+/* Buttons */
+.bs-btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}

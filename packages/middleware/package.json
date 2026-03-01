@@ -1,0 +1,38 @@
+{
+  "name": "@brand-sync/middleware",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "seed": "ts-node scripts/seed-db.ts",
+    "test": "jest --config jest.config.js",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@brand-sync/shared": "1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.0",
+    "express": "^4.18.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "lru-cache": "^10.2.0",
+    "morgan": "^1.10.0",
+    "sql.js": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.0",
+    "@types/express": "^4.17.0",
+    "@types/jest": "^30.0.0",
+    "@types/jsonwebtoken": "^9.0.0",
+    "@types/morgan": "^1.9.0",
+    "@types/node": "^25.3.3",
+    "@types/supertest": "^6.0.0",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.4.0"
+  }
+}
