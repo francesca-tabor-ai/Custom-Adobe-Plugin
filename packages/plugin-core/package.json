@@ -1,0 +1,9 @@
+{
+  "name": "@brand-sync/plugin-core",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "dependencies": {
+    "@brand-sync/shared": "1.0.0"
+  }
+}

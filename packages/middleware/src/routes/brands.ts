@@ -27,7 +27,7 @@ router.get("/:brandId/payload", authGuard, async (req: Request, res: Response) =
 
   if (!payload) {
     const db = await getBrandDb();
-    payload = buildBrandPayload(db, brandId);
+    payload = buildBrandPayload(db, brandId) ?? undefined;
 
     if (!payload) {
       res.status(404).json({

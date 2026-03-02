@@ -4,13 +4,19 @@
   "private": true,
   "description": "Enterprise Brand Sync & Governance - Adobe UXP Plugin + Middleware",
   "workspaces": [
-    "packages/*"
+    "packages/shared",
+    "packages/middleware",
+    "packages/plugin-core",
+    "packages/plugin/Photoshop-Brand-Plugin",
+    "packages/plugin/InDesign-Brand-Plugin"
   ],
   "scripts": {
     "build:shared": "npm run build -w packages/shared",
     "build:middleware": "npm run build -w packages/middleware",
-    "build:plugin": "npm run build -w packages/plugin",
-    "build": "npm run build:shared && npm run build:middleware && npm run build:plugin",
+    "build:ps": "npm run build -w packages/plugin/Photoshop-Brand-Plugin",
+    "build:id": "npm run build -w packages/plugin/InDesign-Brand-Plugin",
+    "build:plugins": "npm run build:ps && npm run build:id",
+    "build": "npm run build:shared && npm run build:middleware && npm run build:plugins",
     "dev:middleware": "npm run dev -w packages/middleware",
     "seed": "npm run seed -w packages/middleware",
     "test": "npm test -w packages/middleware",

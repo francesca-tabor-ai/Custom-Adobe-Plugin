@@ -1,0 +1,83 @@
+{
+  "id": "com.enterprise.brand-sync.id",
+  "name": "Brand Sync (InDesign)",
+  "version": "1.0.0",
+  "main": "index.html",
+  "manifestVersion": 5,
+  "host": {
+    "app": "ID",
+    "minVersion": "21.2.0"
+  },
+  "requiredPermissions": {
+    "allowCodeGenerationFromStrings": true,
+    "network": {
+      "domains": [
+        "localhost",
+        "127.0.0.1"
+      ]
+    },
+    "localFileSystem": "fullAccess",
+    "clipboard": "readAndWrite"
+  },
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "brandSyncPanel",
+      "label": {
+        "default": "Brand Sync"
+      },
+      "minimumSize": {
+        "width": 280,
+        "height": 400
+      },
+      "maximumSize": {
+        "width": 500,
+        "height": 2000
+      },
+      "preferredDockedSize": {
+        "width": 320,
+        "height": 600
+      },
+      "preferredFloatingSize": {
+        "width": 320,
+        "height": 600
+      },
+      "icons": [
+        {
+          "width": 32,
+          "height": 32,
+          "path": "icons/icon_D.png",
+          "scale": [1, 2],
+          "theme": ["dark", "darkest"],
+          "species": ["generic"]
+        },
+        {
+          "width": 32,
+          "height": 32,
+          "path": "icons/icon_N.png",
+          "scale": [1, 2],
+          "theme": ["lightest", "light"],
+          "species": ["generic"]
+        }
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "width": 32,
+      "height": 32,
+      "path": "icons/icon_D.png",
+      "scale": [1, 2],
+      "theme": ["dark", "darkest"],
+      "species": ["generic"]
+    },
+    {
+      "width": 32,
+      "height": 32,
+      "path": "icons/icon_N.png",
+      "scale": [1, 2],
+      "theme": ["lightest", "light"],
+      "species": ["generic"]
+    }
+  ]
+}

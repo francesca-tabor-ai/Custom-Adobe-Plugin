@@ -7,7 +7,7 @@
     "build": "tsc",
     "dev": "ts-node src/index.ts",
     "seed": "ts-node scripts/seed-db.ts",
-    "test": "jest --config jest.config.js",
+    "test": "NODE_OPTIONS='--localstorage-file=/tmp/jest-bs-ls' jest --config jest.config.js",
     "clean": "rm -rf dist"
   },
   "dependencies": {

@@ -1,0 +1,18 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "@brand-sync/shared": ["../../shared/src"],
+      "@brand-sync/plugin-core": ["../../plugin-core/src"],
+      "@brand-sync/plugin-core/*": ["../../plugin-core/src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../../shared" },
+    { "path": "../../plugin-core" }
+  ]
+}

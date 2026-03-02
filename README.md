@@ -9,16 +9,22 @@ Airtable <-> [Python data-sync] <-> SQLite (existing)
                                        |
                               [Node.js middleware] -- reads SQLite, serves REST API
                                        |
-                              [UXP Plugin] -- InDesign + Photoshop panels
+                    ┌──────────────────┼──────────────────┐
+              [PS Plugin]      [plugin-core]       [ID Plugin]
+              Photoshop         Shared UI &        InDesign
+              adapter           services            adapter
 ```
 
 ## Monorepo Structure
 
 ```
 packages/
-  shared/        Shared TypeScript types (BrandPayload, API contracts, audit events)
-  middleware/    Express service -- SQLite reader, JWT auth, brand API, audit logging
-  plugin/        Adobe UXP plugin -- adapters, UI components, offline cache
+  shared/                            Shared TypeScript types (BrandPayload, API contracts, audit events)
+  middleware/                        Express service -- SQLite reader, JWT auth, brand API, audit logging
+  plugin-core/                       Shared plugin UI + services (host-agnostic)
+  plugin/
+    Photoshop-Brand-Plugin/          Photoshop host adapter + UXP manifest
+    InDesign-Brand-Plugin/           InDesign host adapter + UXP manifest
 ```
 
 ### Middleware
@@ -33,12 +39,22 @@ packages/
 | `POST /audit/events` | Write audit records |
 | `GET /health` | DB connectivity check |
 
-### Plugin
+### Plugin Architecture
 
-- **Host adapters** for InDesign and Photoshop (swatch injection, logo placement, color/disclaimer validation)
-- **Offline-first** caching via localStorage with ETag revalidation
-- **Audit logger** with batched flush and offline queue persistence
-- **Spectrum Web Components** UI (SignIn -> BrandSelector -> BrandDashboard)
+The plugin layer uses an **adapter pattern**:
+
+- **plugin-core** contains all shared UI components (SignIn, BrandSelector, BrandDashboard, SwatchPanel, LogoPanel, ValidationPanel, AuditBanner) and services (API client, auth manager, brand store, cache manager, audit logger, validation engine).
+- Each host plugin (Photoshop, InDesign) registers its adapter at startup via `registerAdapter()`, then hands off to plugin-core for rendering.
+- Host adapters implement the `HostAdapter` interface with methods for applying swatches, placing logos, and validating colors/disclaimers using host-specific APIs.
+
+### Plugin Features
+
+| Feature | InDesign | Photoshop |
+|---|---|---|
+| Apply color swatches | Named colors in Swatches panel (BS_ prefix) | batchPlay swatch descriptors |
+| Place logos | Frame + place with fitting options | batchPlay placeEvent |
+| Validate colors | Reads doc.colors against brand palette | Reads text layer colors |
+| Validate disclaimers | Iterates doc.stories for text matching | Collects text from TEXT layers |
 
 ## Prerequisites
 
@@ -65,30 +81,38 @@ cp .env.example packages/middleware/.env
 # Start the middleware dev server (default port 3200)
 npm run dev:middleware
 
-# Build all packages
+# Build all packages (shared -> plugins)
 npm run build
+
+# Build individual plugins
+npm run build:ps     # Photoshop only
+npm run build:id     # InDesign only
 
 # Run tests
 npm test
 ```
 
-## Loading the Plugin
+## Loading the Plugins
 
-1. Open Adobe InDesign or Photoshop
+### Photoshop
+
+1. Open Adobe Photoshop (27.4.0+)
 2. Launch the **UXP Developer Tool**
-3. Click **Add Plugin** and select `packages/plugin/manifest.json`
+3. Click **Add Plugin** and select `packages/plugin/Photoshop-Brand-Plugin/dist/manifest.json`
 4. Load the plugin -- the Brand Sync panel appears
-5. Sign in with an allowed email and the shared secret
-6. Select a brand, then apply swatches, place logos, or run validation
 
-## Plugin Features
+### InDesign
 
-| Feature | InDesign | Photoshop |
-|---|---|---|
-| Apply color swatches | Named colors in Swatches panel (BS_ prefix) | batchPlay swatch descriptors |
-| Place logos | Frame + place with fitting options | batchPlay placeEvent |
-| Validate colors | Reads doc.colors against brand palette | Reads text layer colors |
-| Validate disclaimers | Iterates doc.stories for text matching | Collects text from TEXT layers |
+1. Open Adobe InDesign (21.2.0+)
+2. Launch the **UXP Developer Tool**
+3. Click **Add Plugin** and select `packages/plugin/InDesign-Brand-Plugin/dist/manifest.json`
+4. Load the plugin -- the Brand Sync panel appears
+
+### Usage
+
+1. Sign in with an allowed email and the shared secret
+2. Select a brand from the list
+3. Apply swatches, place logos, or run validation from the dashboard tabs
 
 ## Environment Variables
 
